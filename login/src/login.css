@@ -1,0 +1,193 @@
+  body {
+      background-color: #ffe5d9;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; 
+      transition: background-color 0.5s ease;
+      cursor: pointer;
+    }
+    .logoption h3
+    {
+      position: absolute;
+      margin-top: 1rem;
+      margin-left: 35rem;  
+      color: rgb(7, 121, 153);  
+    }
+    span {
+      color: rgb(7, 121, 153);
+      position: absolute;
+      display: flex;
+      margin-top: 4rem;
+    }
+    .std,
+    .adminopt,.teacheropt {
+      position: absolute;
+      color: rgb(59, 191, 196);
+      width: 2rem;
+      height: 2rem;
+      margin-top: 10px;
+      border: solid rgb(7, 121, 153) 2px;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      cursor: pointer;
+      transition: all 0.2s ease-in;
+    }
+    
+    .std {
+      margin-left: 50rem;
+    }
+    
+    .adminopt {
+      margin-left: 46rem;
+    }
+    .teacheropt {
+      margin-left: 42rem;
+    }
+    
+    .std:hover,
+    .adminopt:hover,.teacheropt:hover {
+      color: white;
+      background-color: rgb(7, 121, 153);
+    }
+    
+    .login-Container {
+      width: 55rem;
+      height: 40rem;
+      background-color: white;
+      border-radius: 30px;
+      margin-left: 23%;
+      margin-top: 2%;
+      position: relative;
+      transition: background-color 0.3s ease; 
+    }
+    
+    
+    .login-Container.admin-bg {
+      background-color: #f0f8ff; 
+    }
+    .login-Container.teacher-bg {
+      background-color: #f0f8ff; 
+    }
+    .login-Container.student-bg {
+      background-color: #f0f8ff; 
+    }
+    .img-container {
+      width: 30rem;
+      height: 38rem;
+      position: absolute;
+      margin-top: 1rem;
+      margin-left: 1rem;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+    
+    .img-slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 30rem;
+      height: 38rem;
+    }
+    
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .box {
+      width: 30rem;
+      height: 10rem;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 28rem;
+      margin-top: 10rem;
+    }
+    
+    input, select {
+      height: 1rem;
+      width: 100%;
+      font-size: 0.9rem;
+      border: none;
+      padding: 1rem;
+      outline: none;
+    }
+    
+    .form__group {
+      position: relative;
+      padding: 20px 0 0;
+      width: 100%;
+      max-width: 180px;
+    }
+    
+    .form__field {
+      font-family: inherit;
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #9b9b9b;
+      outline: 0;
+      font-size: 17px;
+      color: #070707;
+      padding: 7px 0;
+      background: transparent;
+      transition: border-color 0.2s;
+    }
+    
+    .form__field::placeholder {
+      color: transparent;
+    }
+    .form__field:placeholder-shown ~ .form__label {
+      font-size: 17px;
+      cursor: text;
+      top: 20px;
+  }
+    .form__label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 17px;
+      color: #9b9b9b;
+      pointer-events: none;
+      }
+    .form__field:focus {
+      padding-bottom: 6px;
+      font-weight: 700;
+      border-width: 3px;
+      border-image: linear-gradient(to right, #116399, #38caef);
+      border-image-slice: 1;
+  }
+    .form__field:focus ~ .form__label {
+      position: absolute;
+      top: 0;
+      display: block;
+      transition: 0.2s;
+      font-size: 17px;
+      color: #38caef;
+      font-weight: 700;
+  }
+    .form__field:required, .form__field:invalid {
+      box-shadow: none;
+  }
+    button.submit {
+      padding: 10px 22px;
+      border-radius: 6px;
+      border: none;
+      color: #fff;
+      background-color: #f5692d;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 1rem;
+    }
+    
+    
+    .login-Container.admin-bg button.submit {
+      background-color: #5a1bb2;
+    }
+    .login-Container.teacher-bg button.submit {
+      background-color: #1576b6;
+    }
+    
