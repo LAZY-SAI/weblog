@@ -6,26 +6,37 @@
       transition: background-color 0.5s ease;
       cursor: pointer;
     }
+    
     .logoption h3
     {
       position: absolute;
-      margin-top: 1rem;
-      margin-left: 35rem;  
+      margin-top: 7rem;
+      margin-left: 41rem;  
       color: rgb(7, 121, 153);  
     }
-    span {
+    .logoption span {
       color: rgb(7, 121, 153);
       position: absolute;
       display: flex;
-      margin-top: 4rem;
+      margin-top: 7rem;
+      font-size: 18px;
+    }
+    span
+    {
+      color: rgb(7, 121, 153);
+      position: absolute;
+      display: flex;
+      margin-top: 2qrem;
+      font-size: 18px;
     }
     .std,
     .adminopt,.teacheropt {
       position: absolute;
       color: rgb(59, 191, 196);
-      width: 2rem;
-      height: 2rem;
-      margin-top: 10px;
+      width: 5rem;
+      height: 5rem;
+      font-size: 20px;
+      margin-top: 10rem;
       border: solid rgb(7, 121, 153) 2px;
       border-radius: 50%;
       justify-content: center;
@@ -36,14 +47,14 @@
     }
     
     .std {
-      margin-left: 50rem;
+      margin-left: 35rem;
     }
     
     .adminopt {
-      margin-left: 46rem;
+      margin-left: 47rem;
     }
     .teacheropt {
-      margin-left: 42rem;
+      margin-left: 41rem;
     }
     
     .std:hover,
@@ -104,7 +115,7 @@
       justify-content: center;
       align-items: center;
       margin-left: 28rem;
-      margin-top: 10rem;
+      margin-top: 18rem;
     }
     
     input, select {

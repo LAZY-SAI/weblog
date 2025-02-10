@@ -42,7 +42,7 @@ function Login() {
   return (
     <div className={`login-Container ${isAdmin ? "admin-bg" : ""} ${isTeacher ? "teacher-bg" : ""}`}>
       <div className="logoption">
-        <h3>Login As:</h3>
+        <h3>Login:</h3>
 
         <button className="std" onClick={handleStudentClick}>
           <FontAwesomeIcon icon={faUserGraduate} />
@@ -56,7 +56,7 @@ function Login() {
           <FontAwesomeIcon icon={faUser} />
           <span>Admin</span>
         </button>
-
+    </div>
         <div className="img-container">
           <div className="img-slider" style={{ transform: `translateX(-${currentImage * 100}%)` }}>
             <img src={images[0]} alt="Student Login" />
@@ -87,7 +87,7 @@ function Login() {
           </form>
         </div>
       </div>
-    </div>
+  
   );
 }
 
