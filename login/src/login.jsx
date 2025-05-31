@@ -12,6 +12,8 @@ function Login() {
   const images = [logBackground, adminlogBackground, teacherBackground];
 
   useEffect(() => {
+    document.body.classList.add("transition-colors", "duration-500");
+
     if (isAdmin) {
       document.body.style.backgroundColor = "#7209b7";
     } else if (isTeacher) {
@@ -41,63 +43,80 @@ function Login() {
 
   return (
     <div
-      className={`mx-auto mt-10 max-w-6xl bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row ${
-        isAdmin ? "bg-indigo-50" : isTeacher ? "bg-blue-50" : ""
+      className={`max-w-6xl mx-auto my-8 rounded-3xl shadow-lg overflow-hidden flex flex-col md:flex-row transition-colors duration-500 ${
+        isAdmin ? "bg-purple-100" : isTeacher ? "bg-blue-100" : "bg-white"
       }`}
     >
-      {/* Left image */}
-      <div className="w-full md:w-1/2 h-64 md:h-auto">
+      {/* Left Image Slider - Fixed height for all images */}
+      <div className="w-full md:w-1/2 h-64 md:h-auto overflow-hidden relative">
         <div
-          className="h-full w-full transition-transform duration-500"
+          className="flex transition-transform duration-500 ease-in-out h-full"
           style={{ transform: `translateX(-${currentImage * 100}%)` }}
         >
-          <img
-            src={images[currentImage]}
-            alt="Login Visual"
-            className="h-full w-full object-cover"
-          />
+          {images.map((img, index) => (
+            <div key={index} className="w-full h-full flex-shrink-0">
+              <img
+                src={img}
+                alt={`Slide ${index}`}
+                className="w-full h-full object-cover"
+                style={{ objectPosition: 'center' }}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Right form section */}
-      <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
-        <h3 className="text-2xl font-semibold text-center text-blue-700 mb-6">
-          Login
+      {/* Right Form Section */}
+      <div className="w-full md:w-1/2 p-8 flex flex-col justify-center relative">
+        <h3 className="text-3xl font-bold text-center mb-6 text-cyan-700">
+          Login:
         </h3>
 
-        <div className="flex justify-center gap-4 mb-6">
+        <div className="flex justify-center gap-4 mb-6 flex-wrap">
           <button
-            className="flex flex-col items-center gap-1 text-cyan-600 border-2 border-cyan-700 rounded-full w-16 h-16 hover:bg-cyan-700 hover:text-white transition"
             onClick={handleStudentClick}
+            className={`flex flex-col items-center justify-center w-20 h-20 border-2 rounded-full transition-all duration-300 ${
+              currentImage === 0
+                ? "bg-cyan-700 text-white"
+                : "border-cyan-700 text-cyan-700 hover:bg-cyan-700 hover:text-white"
+            }`}
           >
-            <FontAwesomeIcon icon={faUserGraduate} />
-            <span className="text-xs">Student</span>
+            <FontAwesomeIcon icon={faUserGraduate} className="text-xl" />
+            <span className="text-sm mt-1">Student</span>
           </button>
           <button
-            className="flex flex-col items-center gap-1 text-cyan-600 border-2 border-cyan-700 rounded-full w-16 h-16 hover:bg-cyan-700 hover:text-white transition"
             onClick={handleTeacherClick}
+            className={`flex flex-col items-center justify-center w-20 h-20 border-2 rounded-full transition-all duration-300 ${
+              currentImage === 2
+                ? "bg-cyan-700 text-white"
+                : "border-cyan-700 text-cyan-700 hover:bg-cyan-700 hover:text-white"
+            }`}
           >
-            <FontAwesomeIcon icon={faChalkboardUser} />
-            <span className="text-xs">Teacher</span>
+            <FontAwesomeIcon icon={faChalkboardUser} className="text-xl" />
+            <span className="text-sm mt-1">Teacher</span>
           </button>
           <button
-            className="flex flex-col items-center gap-1 text-cyan-600 border-2 border-cyan-700 rounded-full w-16 h-16 hover:bg-cyan-700 hover:text-white transition"
             onClick={handleAdminClick}
+            className={`flex flex-col items-center justify-center w-20 h-20 border-2 rounded-full transition-all duration-300 ${
+              currentImage === 1
+                ? "bg-cyan-700 text-white"
+                : "border-cyan-700 text-cyan-700 hover:bg-cyan-700 hover:text-white"
+            }`}
           >
-            <FontAwesomeIcon icon={faUser} />
-            <span className="text-xs">Admin</span>
+            <FontAwesomeIcon icon={faUser} className="text-xl" />
+            <span className="text-sm mt-1">Admin</span>
           </button>
         </div>
 
-        <form className="space-y-4 max-w-sm mx-auto w-full">
+        <form className="space-y-6 max-w-sm mx-auto w-full">
           <div className="relative">
             <input
               type="text"
               placeholder="Name"
               required
-              className="peer w-full border-b-2 border-gray-400 bg-transparent py-2 px-1 focus:outline-none focus:border-blue-400"
+              className="peer w-full border-b-2 border-gray-400 focus:border-cyan-400 outline-none py-2 bg-transparent placeholder-transparent"
             />
-            <label className="absolute left-1 top-2 text-gray-400 text-sm transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-blue-400">
+            <label className="absolute left-0 top-0 text-gray-500 text-sm transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-sm peer-focus:text-cyan-400">
               Name
             </label>
           </div>
@@ -107,24 +126,29 @@ function Login() {
               type="password"
               placeholder="Password"
               required
-              className="peer w-full border-b-2 border-gray-400 bg-transparent py-2 px-1 focus:outline-none focus:border-blue-400"
+              className="peer w-full border-b-2 border-gray-400 focus:border-cyan-400 outline-none py-2 bg-transparent placeholder-transparent"
             />
-            <label className="absolute left-1 top-2 text-gray-400 text-sm transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs peer-focus:text-blue-400">
+            <label className="absolute left-0 top-0 text-gray-500 text-sm transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-sm peer-focus:text-cyan-400">
               Password
             </label>
           </div>
 
           <button
             type="submit"
-            className={`w-full py-2 rounded bg-orange-500 text-white hover:bg-orange-600 transition ${
-              isAdmin ? "bg-purple-700 hover:bg-purple-800" : ""
-            } ${isTeacher ? "bg-blue-700 hover:bg-blue-800" : ""}`}
+            className={`w-full py-2 rounded text-white font-semibold transition-colors duration-300 ${
+              isAdmin
+                ? "bg-purple-700 hover:bg-purple-800"
+                : isTeacher
+                ? "bg-blue-700 hover:bg-blue-800"
+                : "bg-orange-500 hover:bg-orange-600"
+            }`}
           >
             Sign In
           </button>
-          <span className="text-sm text-center block text-blue-500 hover:underline cursor-pointer">
+
+          <div className="text-center text-sm text-cyan-700 cursor-pointer hover:underline">
             Forgot Password?
-          </span>
+          </div>
         </form>
       </div>
     </div>
