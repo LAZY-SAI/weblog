@@ -12,13 +12,8 @@ function Login() {
   const images = [logBackground, adminlogBackground, teacherBackground];
 
   useEffect(() => {
-    if (isAdmin) {
-      document.body.className = "bg-purple-800";
-    } else if (isTeacher) {
-      document.body.className = "bg-blue-300";
-    } else {
-      document.body.className = "bg-rose-50";
-    }
+    const bodyClasses = isAdmin ? "bg-purple-800" : isTeacher ? "bg-blue-300" : "bg-rose-50";
+    document.body.className = `${bodyClasses} m-0 p-0 overflow-hidden transition-colors duration-500 ease-in-out cursor-pointer`;
   }, [isAdmin, isTeacher]);
 
   const handleStudentClick = () => {
@@ -40,41 +35,53 @@ function Login() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col md:flex-row items-center justify-center p-4 transition-colors duration-300 ${isAdmin ? "bg-purple-800" : isTeacher ? "bg-blue-300" : "bg-rose-50"}`}>
-      {/* Login Options */}
-      <div className="w-full md:w-1/4 mb-8 md:mb-0 md:mr-8 bg-white p-6 rounded-lg shadow-lg">
-        <h3 className="text-xl font-bold mb-4 text-gray-800">Login:</h3>
-        
-        <div className="space-y-4">
-          <button 
-            onClick={handleStudentClick}
-            className={`w-full flex items-center justify-start p-3 rounded-lg transition-all ${!isAdmin && !isTeacher ? "bg-rose-100 text-rose-800" : "bg-gray-100 hover:bg-gray-200"}`}
-          >
-            <FontAwesomeIcon icon={faUserGraduate} className="mr-3" />
-            <span>Student</span>
-          </button>
+    <div className={`min-h-screen flex items-center justify-center p-4 ${isAdmin ? "bg-purple-800" : isTeacher ? "bg-blue-300" : "bg-rose-50"}`}>
+      {/* Login Container */}
+      <div className={`relative w-full max-w-4xl h-[40rem] bg-white rounded-3xl shadow-xl transition-colors duration-300 ${
+        isAdmin ? "bg-blue-50" : isTeacher ? "bg-blue-50" : "bg-white"
+      }`}>
+        {/* Login Options */}
+        <div className="absolute top-32 left-1/2 transform -translate-x-1/2">
+          <h3 className="absolute -top-20 left-1/2 transform -translate-x-1/2 text-xl font-semibold text-cyan-700">Login:</h3>
           
-          <button 
-            onClick={handleTeacherClick}
-            className={`w-full flex items-center justify-start p-3 rounded-lg transition-all ${isTeacher ? "bg-blue-100 text-blue-800" : "bg-gray-100 hover:bg-gray-200"}`}
-          >
-            <FontAwesomeIcon icon={faChalkboardUser} className="mr-3" />
-            <span>Teacher</span>
-          </button>
+          <div className="flex space-x-8">
+            <button 
+              onClick={handleStudentClick}
+              className={`w-20 h-20 flex items-center justify-center text-cyan-400 text-xl rounded-full border-2 border-cyan-700 transition-all duration-200 ${
+                !isAdmin && !isTeacher ? "bg-cyan-700 text-white" : "hover:bg-cyan-700 hover:text-white"
+              }`}
+            >
+              <FontAwesomeIcon icon={faUserGraduate} />
+            </button>
+            
+            <button 
+              onClick={handleTeacherClick}
+              className={`w-20 h-20 flex items-center justify-center text-cyan-400 text-xl rounded-full border-2 border-cyan-700 transition-all duration-200 ${
+                isTeacher ? "bg-cyan-700 text-white" : "hover:bg-cyan-700 hover:text-white"
+              }`}
+            >
+              <FontAwesomeIcon icon={faChalkboardUser} />
+            </button>
+            
+            <button 
+              onClick={handleAdminClick}
+              className={`w-20 h-20 flex items-center justify-center text-cyan-400 text-xl rounded-full border-2 border-cyan-700 transition-all duration-200 ${
+                isAdmin ? "bg-cyan-700 text-white" : "hover:bg-cyan-700 hover:text-white"
+              }`}
+            >
+              <FontAwesomeIcon icon={faUser} />
+            </button>
+          </div>
           
-          <button 
-            onClick={handleAdminClick}
-            className={`w-full flex items-center justify-start p-3 rounded-lg transition-all ${isAdmin ? "bg-purple-100 text-purple-800" : "bg-gray-100 hover:bg-gray-200"}`}
-          >
-            <FontAwesomeIcon icon={faUser} className="mr-3" />
-            <span>Admin</span>
-          </button>
+          <div className="absolute top-10 left-0 right-0 flex justify-between px-4">
+            <span className="text-cyan-700 text-lg">Student</span>
+            <span className="text-cyan-700 text-lg">Teacher</span>
+            <span className="text-cyan-700 text-lg">Admin</span>
+          </div>
         </div>
-      </div>
 
-      {/* Image Slider */}
-      <div className="w-full md:w-2/5 mb-8 md:mb-0 overflow-hidden rounded-lg shadow-xl">
-        <div className="relative w-full h-64 md:h-96">
+        {/* Image Slider */}
+        <div className="absolute top-4 left-4 w-[30rem] h-[38rem] rounded-3xl overflow-hidden">
           <div 
             className="flex transition-transform duration-500 ease-in-out w-full h-full"
             style={{ transform: `translateX(-${currentImage * 100}%)` }}
@@ -89,55 +96,59 @@ function Login() {
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Login Form */}
-      <div className="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg">
-        <form className="space-y-6">
-          <div className="relative">
-            <input 
-              type="text" 
-              id="name"
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-              placeholder=" "
-              required
-            />
-            <label 
-              htmlFor="name" 
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+        {/* Login Form */}
+        <div className="absolute top-[18rem] right-4 w-[30rem] h-[10rem] flex justify-center items-center">
+          <form className="w-full max-w-xs space-y-6">
+            <div className="relative pt-5">
+              <input 
+                type="text" 
+                id="name"
+                className="block w-full bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-cyan-500 peer py-2 px-0 text-gray-900 text-sm"
+                placeholder=" "
+                required
+              />
+              <label 
+                htmlFor="name" 
+                className="absolute text-gray-500 text-sm duration-300 transform -translate-y-6 scale-75 top-1 z-10 origin-[0] peer-focus:text-cyan-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0"
+              >
+                Name
+              </label>
+            </div>
+            
+            <div className="relative pt-5">
+              <input 
+                type="password" 
+                id="password"
+                className="block w-full bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-cyan-500 peer py-2 px-0 text-gray-900 text-sm"
+                placeholder=" "
+                required
+              />
+              <label 
+                htmlFor="password" 
+                className="absolute text-gray-500 text-sm duration-300 transform -translate-y-6 scale-75 top-1 z-10 origin-[0] peer-focus:text-cyan-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0"
+              >
+                Password
+              </label>
+            </div>
+            
+            <button 
+              type="submit" 
+              className={`w-full py-2 px-4 rounded-md text-white font-medium transition-all duration-200 ${
+                isAdmin ? "bg-purple-700 hover:bg-purple-800" : 
+                isTeacher ? "bg-blue-600 hover:bg-blue-700" : 
+                "bg-orange-500 hover:bg-orange-600"
+              }`}
             >
-              Name
-            </label>
-          </div>
-          
-          <div className="relative">
-            <input 
-              type="password" 
-              id="password"
-              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-              placeholder=" "
-              required
-            />
-            <label 
-              htmlFor="password" 
-              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-            >
-              Password
-            </label>
-          </div>
-          
-          <button 
-            type="submit" 
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition flex items-center justify-center"
-          >
-            Sign In
-            <FontAwesomeIcon icon="arrow-right-to-bracket" className="ml-2" />
-          </button>
-          
-          <p className="text-sm text-gray-600 text-center hover:text-blue-600 cursor-pointer transition">
-            Forgot Password?
-          </p>
-        </form>
+              Sign In
+              <FontAwesomeIcon icon="arrow-right-to-bracket" className="ml-2" />
+            </button>
+            
+            <p className="text-sm text-gray-600 text-center hover:text-blue-600 cursor-pointer transition">
+              Forgot Password?
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );
