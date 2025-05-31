@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+  <div id="login-container" class="login-Container">
+    <div class="logoption">
+      <h3>Login:</h3>
+
+      <button class="std" onclick="handleStudentClick()">
+        <i class="fa-solid fa-user-graduate"></i>
+        <span>Student</span>
+      </button>
+      <button class="teacheropt" onclick="handleTeacherClick()">
+        <i class="fa fa-chalkboard-user"></i>
+        <span>Teacher</span>
+      </button>
+      <button class="adminopt" onclick="handleAdminClick()">
+        <i class="fa fa-user-gear"></i>
+        <span>Admin</span>
+      </button>
+    </div>
+
+    <div class="img-container">
+      <div id="img-slider" class="img-slider">
+        <img id="student-image" src="./image/login.png" alt="Student Login">
+        <img id="admin-image" src="./image/admin.png" alt="Admin Login">
+        <img id="teacher-image" src="./image/teacher.png" alt="Teacher Login">
+      </div>
+    </div>
+
+    <div class="box">
+      <form>
+        <div class="form__group field">
+          <input type="text" class="form__field" placeholder="Name" required>
+          <label for="name" class="form__label">Name</label>
+        </div>
+        <div class="form__group field">
+          <input type="password" class="form__field" placeholder="Password" required>
+          <label for="password" class="form__label">Password</label>
+        </div>
+        <button type="submit" class="submit" id="userLogin">
+          Sign In
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        </button>
+        <span class="forgot">Forgot Password?</span>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js">
+   
+  </script>
+</body>
+</html>
